@@ -1,0 +1,123 @@
+[gd_scene load_steps=11 format=3 uid="uid://dd4kv8rs1ox18"]
+
+[ext_resource type="Script" path="res://Scripts/Boss2.gd" id="1_svqve"]
+[ext_resource type="Texture2D" uid="uid://d3x1o6h2gg837" path="res://Assets/Boss2-sheet.png" id="3_2l5i3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hoppb"]
+size = Vector2(36, 78)
+
+[sub_resource type="Animation" id="Animation_owlfn"]
+resource_name = "Dano"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Dano"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_t4ght"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rau5v"]
+_data = {
+"Dano": SubResource("Animation_owlfn"),
+"RESET": SubResource("Animation_t4ght")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrnqa"]
+atlas = ExtResource("3_2l5i3")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqt56"]
+atlas = ExtResource("3_2l5i3")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cps6x"]
+atlas = ExtResource("3_2l5i3")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lpxcj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrnqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqt56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cps6x")
+}],
+"loop": true,
+"name": &"Dano",
+"speed": 5.0
+}]
+
+[node name="Boss2" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 8
+collision_mask = 11
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_svqve")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 3)
+scale = Vector2(0.9, 0.9)
+shape = SubResource("RectangleShape2D_hoppb")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2, 3)
+shape = SubResource("RectangleShape2D_hoppb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rau5v")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lpxcj")
+animation = &"Dano"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

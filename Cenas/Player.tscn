@@ -1,0 +1,251 @@
+[gd_scene load_steps=20 format=3 uid="uid://dsotv0cfrno36"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_jb11e"]
+[ext_resource type="Texture2D" uid="uid://ngc48mk6jkpa" path="res://Assets/TilesetPesadelo/Personagem Básico1.png" id="2_53nrv"]
+[ext_resource type="PackedScene" uid="uid://bnc1w3s07wgev" path="res://Cenas/dash.tscn" id="2_lckas"]
+[ext_resource type="Texture2D" uid="uid://b6q5k41j1qjtb" path="res://Assets/Personagem Básico.png" id="3_men4t"]
+[ext_resource type="AudioStream" uid="uid://bmdkcxwr1bnsk" path="res://Music/Efeito.mp3" id="5_l0pm6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77pm5"]
+atlas = ExtResource("2_53nrv")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyrhf"]
+atlas = ExtResource("2_53nrv")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccx1k"]
+atlas = ExtResource("2_53nrv")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gsg7"]
+atlas = ExtResource("3_men4t")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilvdu"]
+atlas = ExtResource("3_men4t")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ouxnx"]
+atlas = ExtResource("3_men4t")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_av77h"]
+atlas = ExtResource("2_53nrv")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_htsfq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77pm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyrhf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccx1k")
+}],
+"loop": true,
+"name": &"Atk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gsg7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilvdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouxnx")
+}],
+"loop": true,
+"name": &"Dano",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_av77h")
+}],
+"loop": true,
+"name": &"Parado",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxonn"]
+size = Vector2(20, 67)
+
+[sub_resource type="Animation" id="Animation_nh4im"]
+resource_name = "Atk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Atk/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Atk"]
+}
+
+[sub_resource type="Animation" id="Animation_rw6yq"]
+resource_name = "Dano"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Dano"]
+}
+
+[sub_resource type="Animation" id="Animation_4b5sb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Atk/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hnctb"]
+_data = {
+"Atk": SubResource("Animation_nh4im"),
+"Dano": SubResource("Animation_rw6yq"),
+"RESET": SubResource("Animation_4b5sb")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0amfa"]
+size = Vector2(31, 65)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 10
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_jb11e")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -62.0
+offset_right = 208.0
+offset_bottom = 154.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Vida:"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_htsfq")
+animation = &"Atk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -0.5)
+shape = SubResource("RectangleShape2D_fxonn")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_smoothed = true
+drag_left_margin = 0.4
+drag_top_margin = 0.4
+drag_right_margin = 0.4
+drag_bottom_margin = 0.4
+
+[node name="Dash" parent="." instance=ExtResource("2_lckas")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hnctb")
+}
+
+[node name="Atk" type="Area2D" parent="." groups=["Player"]]
+position = Vector2(50, 0)
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Atk"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_0amfa")
+disabled = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(50, 0)
+
+[node name="Atirar" type="Timer" parent="."]
+wait_time = 0.06
+one_shot = true
+
+[node name="Ai" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_l0pm6")
+
+[connection signal="body_entered" from="Atk" to="." method="_on_atk_body_entered"]
+[connection signal="timeout" from="Atirar" to="." method="_on_atirar_timeout"]

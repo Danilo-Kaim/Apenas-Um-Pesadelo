@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://c374m8yd4iojv"]
+
+[ext_resource type="Script" path="res://Scripts/control.gd" id="1_4v5oi"]
+[ext_resource type="PackedScene" uid="uid://xs8tqo6pdqkq" path="res://Cenas/background.tscn" id="1_kr68s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4n0f3"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_bxs1y"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_8lata"]
+font_size = 25
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1153.0
+offset_bottom = 647.0
+script = ExtResource("1_4v5oi")
+
+[node name="Background" parent="." instance=ExtResource("1_kr68s")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 111052.0
+offset_bottom = 73636.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 36.0
+offset_right = 929.0
+offset_bottom = 127.0
+text = "APenas um Pesadelo"
+label_settings = SubResource("LabelSettings_4n0f3")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 402.0
+offset_right = 380.0
+offset_bottom = 642.0
+text = "Controles:
+Move = W,A,S,D ou Setas
+Atk = Q ou Z
+Tiro = E ou X
+Dash = Espaço"
+label_settings = SubResource("LabelSettings_bxs1y")
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 708.0
+offset_top = 600.0
+offset_right = 1145.0
+offset_bottom = 638.0
+text = "Produzido por Danilo Carneiro Teles"
+label_settings = SubResource("LabelSettings_8lata")
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 196.0
+offset_right = 666.0
+offset_bottom = 250.0
+text = "Play
+"
+
+[node name="Sair" type="Button" parent="."]
+layout_mode = 0
+offset_left = 481.0
+offset_top = 266.0
+offset_right = 666.0
+offset_bottom = 328.0
+text = "Sair"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Sair" to="." method="_on_sair_pressed"]

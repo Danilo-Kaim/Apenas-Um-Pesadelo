@@ -1,0 +1,119 @@
+[gd_scene load_steps=12 format=3 uid="uid://c2c41kyupe63w"]
+
+[ext_resource type="Script" path="res://Scripts/Boss3.gd" id="1_nkndj"]
+[ext_resource type="PackedScene" uid="uid://bnc1w3s07wgev" path="res://Cenas/dash.tscn" id="3_a3m5c"]
+[ext_resource type="Texture2D" uid="uid://761i1fqrgo1q" path="res://Assets/Boss3-sheet.png" id="3_rayxl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0im5x"]
+atlas = ExtResource("3_rayxl")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3il6e"]
+atlas = ExtResource("3_rayxl")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vb2i1"]
+atlas = ExtResource("3_rayxl")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l3bo2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0im5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3il6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vb2i1")
+}],
+"loop": true,
+"name": &"Dano",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_mpn6c"]
+resource_name = "Dano"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Dano"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_05nal"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2feis"]
+_data = {
+"Dano": SubResource("Animation_mpn6c"),
+"RESET": SubResource("Animation_05nal")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_thw50"]
+size = Vector2(36, 77)
+
+[node name="Boss3" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 8
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_nkndj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l3bo2")
+animation = &"Dano"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2feis")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 3)
+scale = Vector2(0.9, 0.9)
+shape = SubResource("RectangleShape2D_thw50")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2, 3)
+shape = SubResource("RectangleShape2D_thw50")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="Dash" parent="." instance=ExtResource("3_a3m5c")]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

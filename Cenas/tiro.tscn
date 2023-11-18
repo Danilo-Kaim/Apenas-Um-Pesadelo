@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://udsqlhtcskc8"]
+
+[ext_resource type="Script" path="res://Scripts/tiroPlayer.gd" id="1_aohkn"]
+[ext_resource type="Texture2D" uid="uid://kamn5hupdq26" path="res://Assets/TilesetPesadelo/Faca.png" id="1_ssrwl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lespk"]
+size = Vector2(34, 15)
+
+[node name="Tiro" type="Area2D"]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("1_aohkn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_ssrwl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, 0.5)
+shape = SubResource("RectangleShape2D_lespk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
