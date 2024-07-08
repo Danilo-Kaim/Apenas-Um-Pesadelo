@@ -22,7 +22,7 @@ CenarioSong="*res://Cenas/CenarioSong.tscn"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 

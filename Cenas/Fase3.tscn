@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://ushia6i5exxj"]
 
-[ext_resource type="Texture2D" uid="uid://ctum036pbesw1" path="res://Assets/TilesetPesadelo/Fundo.png" id="1_0ox8o"]
+[ext_resource type="Texture2D" uid="uid://b4hbfdsjq6iw0" path="res://Assets/Fundo.png" id="1_0ox8o"]
 [ext_resource type="PackedScene" uid="uid://djdm7uf4ot7o" path="res://Cenas/TileMap.tscn" id="2_sehdv"]
 [ext_resource type="PackedScene" uid="uid://dsotv0cfrno36" path="res://Cenas/Player.tscn" id="3_drtt5"]
 [ext_resource type="PackedScene" uid="uid://c2c41kyupe63w" path="res://Cenas/boss_3.tscn" id="4_hy2vt"]
+
 
 [node name="Fase3" type="Node2D"]
 

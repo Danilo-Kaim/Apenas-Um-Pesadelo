@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://xs8tqo6pdqkq"]
 
-[ext_resource type="Texture2D" uid="uid://ctum036pbesw1" path="res://Assets/TilesetPesadelo/Fundo.png" id="1_eqoq1"]
+[ext_resource type="Texture2D" uid="uid://b4hbfdsjq6iw0" path="res://Assets/Fundo.png" id="1_eqoq1"]
 
 [node name="Background" type="TextureRect"]
 offset_left = -54064.0

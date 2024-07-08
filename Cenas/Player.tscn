@@ -1,9 +1,9 @@
 [gd_scene load_steps=20 format=3 uid="uid://dsotv0cfrno36"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_jb11e"]
-[ext_resource type="Texture2D" uid="uid://ngc48mk6jkpa" path="res://Assets/TilesetPesadelo/Personagem Básico1.png" id="2_53nrv"]
+[ext_resource type="Texture2D" uid="uid://bfli64uk11mcm" path="res://Assets/Personagem Básico1.png" id="2_53nrv"]
 [ext_resource type="PackedScene" uid="uid://bnc1w3s07wgev" path="res://Cenas/dash.tscn" id="2_lckas"]
-[ext_resource type="Texture2D" uid="uid://b6q5k41j1qjtb" path="res://Assets/Personagem Básico.png" id="3_men4t"]
+[ext_resource type="Texture2D" uid="uid://bbsdsc2tbug56" path="res://Assets/Personagem Básico.png" id="3_men4t"]
 [ext_resource type="AudioStream" uid="uid://bmdkcxwr1bnsk" path="res://Music/Efeito.mp3" id="5_l0pm6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_77pm5"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://f7bwctdxocvs"]
 
 [ext_resource type="Script" path="res://Scripts/tiro.gd" id="1_orpmn"]
-[ext_resource type="Texture2D" uid="uid://kamn5hupdq26" path="res://Assets/TilesetPesadelo/Faca.png" id="2_5387n"]
+[ext_resource type="Texture2D" uid="uid://bdqkg5adr1scw" path="res://Assets/Faca.png" id="2_ly1r1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lespk"]
 size = Vector2(34, 15)
@@ -13,7 +13,7 @@ script = ExtResource("1_orpmn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
-texture = ExtResource("2_5387n")
+texture = ExtResource("2_ly1r1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(7, 0.5)
